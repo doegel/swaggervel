@@ -1,5 +1,5 @@
 {
-    "name": "appointer/swaggervel",
+    "name": "doegel/swaggervel",
     "description": "A great way to integrate Swagger into Laravel",
     "keywords": ["laravel", "swagger", "documentation", "api"],
     "license": "MIT",
@@ -11,23 +11,27 @@
         {
             "name": "Florian Greinus",
             "email": "florian.greinus@gmail.com"
+        },
+        {
+            "name": "Felix Rudat",
+            "email": "frudat@doegel.de"
         }
     ],
     "require": {
         "php": ">=5.6.0",
-        "illuminate/support": "^5.0|^6.0",
+        "illuminate/support": "^5.0|^6.0|^7.0",
         "swagger-api/swagger-ui": "^3.1",
         "zircote/swagger-php": "^2.0"
     },
     "autoload": {
         "psr-0": {
-            "Appointer\\Swaggervel": "src/"
+            "Doegel\\Swaggervel": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Appointer\\Swaggervel\\SwaggervelServiceProvider"
+                "Doegel\\Swaggervel\\SwaggervelServiceProvider"
             ]
         }
     }

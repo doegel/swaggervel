@@ -1,10 +1,9 @@
-# Swaggervel (Swagger integration for Laravel 5)
+# Swaggervel
 This package combines [Swagger-php](https://github.com/zircote/swagger-php) and [swagger-ui](https://github.com/swagger-api/swagger-ui) into one Laravel-friendly package.
 When you run your app in debug mode, Swaggervel will scan your app folder (or any folder that is set under the "app-dir" variable in the packages config), generate swagger json files and deposit them to the doc-dir folder (default is `/docs`). Files are then served by swagger-ui under the api-docs director.
 
 ## Installation
-- Execute `composer require appointer/swaggervel --dev` within your laravel root directory
-- Add `Appointer\Swaggervel\SwaggervelServiceProvider::class` to your providers array in `app/config/app.php` above your route provider, to avoid any catch-all routes
+- Execute `composer require doegel/swaggervel --dev` within your laravel root directory
 - Run `php artisan vendor:publish --tag=public` to push swagger-ui to your public folder (can be found in public/vendor/swaggervel).
 - Optionally run `php artisan vendor:publish --tag=config` to push the swaggervel default config into your application's config directory.
 - Optionally run `php artisan vendor:publish --tag=views` to push the swaggervel index view file into `resources/views/vendor/swaggervel`.
