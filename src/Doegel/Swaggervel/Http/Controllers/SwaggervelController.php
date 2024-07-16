@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller;
 
 class SwaggervelController extends Controller
 {
-    public function definitions($page = 'api-docs.json')
+    public function definitions($page = 'api-docs.yaml')
     {
         if (config('swaggervel.auto-generate')) {
             $this->regenerateDefinitions();
@@ -16,7 +16,7 @@ class SwaggervelController extends Controller
         $filePath = config('swaggervel.doc-dir') . "/{$page}";
 
         if (File::extension($filePath) === "") {
-            $filePath .= '.json';
+            $filePath .= '.yaml';
         }
 
         if (!File::exists($filePath)) {
@@ -26,7 +26,7 @@ class SwaggervelController extends Controller
         $content = File::get($filePath);
 
         return response($content, 200, array(
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'text/yaml'
         ));
     }
 
@@ -80,12 +80,12 @@ class SwaggervelController extends Controller
         if (is_writable($docDir)) {
             $excludeDirs = config('swaggervel.excludes');
 
-            $swagger = \Swagger\scan($appDir, [
-                'exclude' => $excludeDirs
-            ]);
+            $swagger = \OpenApi\Generator::scan(
+                \OpenApi\Util::finder($appDir, $excludeDirs)
+            );
 
-            $filename = $docDir . '/api-docs.json';
-            file_put_contents($filename, $swagger);
+            $filename = $docDir . '/api-docs.yaml';
+            file_put_contents($filename, $swagger->toYAML());
         }
     }
 
